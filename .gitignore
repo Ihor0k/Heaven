@@ -1,0 +1,5 @@
+/.gradle
+/client/dist/
+/client/node_modules/
+/images/
+/server/build/
