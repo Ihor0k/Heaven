@@ -3,7 +3,7 @@ package ua.ihor0k.heaven.service;
 import org.springframework.core.io.Resource;
 
 public interface ImageService {
-    String upload(Resource file);
+    String upload(Resource image);
 
     Resource download(String name);
 

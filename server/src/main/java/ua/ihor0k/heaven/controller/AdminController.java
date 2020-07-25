@@ -3,6 +3,7 @@ package ua.ihor0k.heaven.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import ua.ihor0k.heaven.service.AdminService;
 import ua.ihor0k.heaven.service.ImageService;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -63,13 +65,24 @@ public class AdminController {
     }
 
     @PostMapping("/image")
-    public String uploadImage(@RequestParam("image") MultipartFile image) {
-        return imageService.upload(image.getResource());
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image) {
+        if (!Objects.equals(image.getContentType(), MediaType.IMAGE_PNG_VALUE)) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("File extension should be png");
+        }
+        String fileName = imageService.upload(image.getResource());
+        return ResponseEntity
+                .ok(fileName);
     }
 
     @GetMapping("/image/{name}")
-    public Resource downloadImage(@PathVariable String name) {
-        return imageService.download(name);
+    public ResponseEntity<Resource> downloadImage(@PathVariable String name) {
+        Resource image = imageService.download(name);
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(image);
     }
 
     @DeleteMapping("/image/{name}")

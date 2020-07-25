@@ -1,40 +1,35 @@
 package ua.ihor0k.heaven.service;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Random;
 
-public class LocalImageService implements ImageService {
-    private static final int fileNameLength = 10;
-    private static final String fileNameAlphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
+@Service
+@Profile("image-local")
+public class LocalImageService extends AbstractImageService {
+    private File dir;
 
-    private final File dir;
-    private final Random random;
-
-    public LocalImageService(String dir) {
-        this.dir = new File(dir);
-        this.random = new Random();
+    public LocalImageService(@Value("${local.image.dir}") String localImageDir) {
+        this.dir = new File(localImageDir);
     }
 
     @Override
-    public String upload(Resource image) {
-        String extension = FilenameUtils.getExtension(image.getFilename());
-        extension = extension == null ? "" : "." + extension.toLowerCase();
-        File file = randomFile(extension);
-        try {
-            InputStream imageInputStream = image.getInputStream();
-            FileUtils.copyInputStreamToFile(imageInputStream, file);
-        } catch (IOException e) {
-            // TODO
-            throw new RuntimeException(e);
-        }
-        return file.getName();
+    protected void save(String fileName, Resource image) throws IOException {
+        File file = new File(dir, fileName);
+        InputStream imageInputStream = image.getInputStream();
+        FileUtils.copyInputStreamToFile(imageInputStream, file);
+    }
+
+    @Override
+    protected boolean isFileExists(String fileName) {
+        return new File(dir, fileName).exists();
     }
 
     @Override
@@ -52,21 +47,4 @@ public class LocalImageService implements ImageService {
         }
     }
 
-    private File randomFile(String extension) {
-        File file;
-        do {
-            String fileName = randomString() + extension;
-            file = new File(dir, fileName);
-        } while (file.exists());
-        return file;
-    }
-
-    private String randomString() {
-        char[] chars = new char[fileNameLength];
-        for (int i = 0; i < chars.length; i++) {
-            int randomIndex = random.nextInt(fileNameAlphabet.length());
-            chars[i] = fileNameAlphabet.charAt(randomIndex);
-        }
-        return new String(chars);
-    }
 }
