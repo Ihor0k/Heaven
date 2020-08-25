@@ -4,10 +4,7 @@
             <span class="name">{{ value.name }}</span>
             <button class="icon-btn remove-btn" @click.stop="$emit('remove')"/>
         </div>
-        <div class="content"
-             :style="{ maxHeight: contentHeight }"
-             ref="content"
-        >
+        <div class="content" :style="{ maxHeight: contentHeight }" ref="content">
             <div class="fields">
                 <div class="field">
                     <label v-uni-for="'name'">Name</label>
@@ -20,14 +17,18 @@
                 </div>
                 <div class="field">
                     <label v-uni-for="'price'">Price</label>
-                    <input v-uni-id="'price'" :value="value.price" @input="update('price', $event.target.value)">
+                    <input v-uni-id="'price'" type="number" :value="value.price"
+                           @input="update('price', $event.target.value)">
                 </div>
-                <div class="field image-field">
-                    <input ref="imgInput" class="image-input" v-uni-id="'image'" type="file"
+            </div>
+            <div class="image-container">
+                <div class="image">
+                    <input ref="imgInput" class="image-input" v-uni-id="'image'" type="file" accept="image/png"
                            @change="imageChange">
-                    <label class="image-label" v-uni-for="'image'">Pick an image</label>
                     <img ref="img" class="image-preview" alt
                          :src="value.image ? imageUrl + '/' + value.image : 'data://,'">
+                    <label class="image-label" :class="{transparent: hasImage}" v-uni-for="'image'">Pick an
+                        image</label>
                 </div>
             </div>
         </div>
@@ -35,11 +36,11 @@
 </template>
 
 <script>
-    import {API_LOCATION} from '../../../config'
-    import {createUniqIdsMixin} from 'vue-uniq-ids'
-    import axios from 'axios'
+import {API_LOCATION} from '../../../config'
+import {createUniqIdsMixin} from 'vue-uniq-ids'
+import axios from 'axios'
 
-    export default {
+export default {
         name: "Option",
         props: ['value'],
         mixins: [createUniqIdsMixin()],
@@ -47,7 +48,13 @@
             return {
                 active: false,
                 imageName: null,
-                imageUrl: API_LOCATION + '/admin/image'
+                imageUrl: API_LOCATION + '/admin/image',
+                hasImage: false
+            }
+        },
+        mounted() {
+            if (this.value.image) {
+                this.hasImage = true
             }
         },
         computed: {
@@ -64,8 +71,10 @@
                 this.update('image', this.imageName)
                 if (newName) {
                     this.value.image = newName;
+                    this.hasImage = true
                 } else {
                     this.value.image = null;
+                    this.hasImage = false
                 }
             }
         },
@@ -127,9 +136,18 @@
     }
 
     .content {
-        padding: 0 1em;
+        display: flex;
         overflow: hidden;
         transition: max-height 0.2s ease-out;
+    }
+
+    .fields {
+        height: 100%;
+        padding: 1em;
+        width: 50%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     .remove-btn {
@@ -142,7 +160,16 @@
         background-color: #e5ca49;
     }
 
-    .image-field {
+    .image-container {
+        padding: 1em 1em 1em 0;
+        width: 50%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .image {
+        height: 100%;
         border: 2px dashed #617c8b;
         overflow: hidden;
         text-align: center;
@@ -154,15 +181,28 @@
     }
 
     .image-label {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        margin: auto 0;
+        justify-content: center;
         width: 100%;
-        padding: 4em 0;
-        display: inline-block;
         cursor: pointer;
+        z-index: 1;
     }
 
     .image-preview {
+        left: 0;
         right: 0;
-        height: 100%;
+        top: 0;
+        bottom: 0;
+        max-height: 100%;
+        max-width: 100%;
+        margin: auto;
         position: absolute;
+    }
+
+    .transparent {
+        opacity: 0;
     }
 </style>

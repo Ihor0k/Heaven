@@ -5,11 +5,12 @@
 </template>
 
 <script>
-    import Admin from "@/components/Admin";
-    import {API_LOCATION} from '../config'
-    import axios from 'axios'
+import Admin from "@/components/admin/Admin";
+import {API_LOCATION} from '../config'
+import axios from 'axios'
+import Client from "@/components/client/Client"
 
-    axios.defaults.baseURL = API_LOCATION
+axios.defaults.baseURL = API_LOCATION
 
     export default {
         name: 'App',
@@ -25,10 +26,20 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-size: 1em;
-        width: 100vw;
+        width: 100%;
     }
 
-    input:not([type]), input[type=text], textarea {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+    }
+
+    input:not([type]), input[type=text], input[type=number], textarea {
         padding: 8px;
         border-radius: 2px;
         font-family: inherit;

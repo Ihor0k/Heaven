@@ -1,6 +1,5 @@
 <template>
     <div class="admin">
-        <button class="btn" @click="print">Print</button>
         <draggable class="parameters"
                    ghost-class="ghost"
                    :list="parameters"
@@ -23,13 +22,13 @@
 </template>
 
 <script>
-    import { KeyGenerator } from "@/utils";
-    import Vue from 'vue'
-    import Parameter from './admin/Parameter.vue'
-    import axios from 'axios'
-    import draggable from 'vuedraggable'
+import {KeyGenerator} from "@/utils";
+import Vue from 'vue'
+import Parameter from './Parameter.vue'
+import axios from 'axios'
+import draggable from 'vuedraggable'
 
-    export default {
+export default {
         name: 'Admin',
         components: {
             Parameter,
@@ -54,9 +53,6 @@
                 })
         },
         methods: {
-            print: function () {
-                console.log(JSON.stringify(this.parameters, null, '\t'));
-            },
             addParameter: function () {
                 const parameter = {
                     key: this.$options.keyGenerator.next(),

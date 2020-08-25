@@ -21,12 +21,12 @@
                     <textarea rows="4" maxlength="800" v-uni-id="'description'" :value="value.description"
                               @input="update('description', $event.target.value)"></textarea>
                 </div>
-                <draggable class="field options"
+                <draggable class="field"
                            ghost-class="ghost"
                            handle=".header"
                            :list="value.options"
                 >
-                    <Option
+                    <Option class="option"
                             v-for="(option, index) in value.options"
                             :key="option.key"
                             ref="options"
@@ -42,13 +42,13 @@
 </template>
 
 <script>
-    import {isEqual, KeyGenerator} from "@/utils"
-    import Vue from 'vue'
-    import Option from "@/components/admin/Option"
-    import {createUniqIdsMixin} from 'vue-uniq-ids'
-    import draggable from 'vuedraggable'
+import {isEqual, KeyGenerator} from "@/utils"
+import Vue from 'vue'
+import Option from "@/components/admin/Option"
+import {createUniqIdsMixin} from 'vue-uniq-ids'
+import draggable from 'vuedraggable'
 
-    export default {
+export default {
         name: "Parameter",
         props: ['value'],
         mixins: [createUniqIdsMixin()],
@@ -72,7 +72,7 @@
                 isSaved: true
             }
         },
-        mounted: function () {
+        mounted() {
             this.$refs.content.addEventListener('transitionend', () => {
                 if (this.active) {
                     this.maxHeight = this.scrollHeight();
@@ -155,10 +155,6 @@
 </script>
 
 <style>
-    .fields {
-        margin: 1em 0;
-    }
-
     .field:not(:last-child) {
         margin-bottom: 1em;
     }
@@ -214,7 +210,11 @@
         transition: max-height 0.2s ease-out;
     }
 
-    .options > *:not(:last-child) {
+    .fields {
+        margin: 1em 0;
+    }
+
+    .option:not(:last-child) {
         margin-bottom: 1em;
     }
 
