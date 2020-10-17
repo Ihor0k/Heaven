@@ -5,7 +5,7 @@ import ua.ihor0k.heaven.dto.ParameterDTO;
 
 import java.util.List;
 
-public interface AdminService {
+public interface ParameterService {
     ParameterDTO createParameter(ParameterDTO parameter);
 
     List<ParameterDTO> getParameters();

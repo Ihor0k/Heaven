@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class ParameterServiceImpl implements ParameterService {
     private ParameterRepository parameterRepository;
 
     @Override
