@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Main from "./components/main/Main"
+import {createUniqIdsMixin} from 'vue-uniq-ids'
 
-Vue.config.productionTip = false
+Vue.mixin(createUniqIdsMixin())
 
 new Vue({
-    render: h => h(App),
+    render: h => h(Main),
 }).$mount('#app')

@@ -23,7 +23,7 @@
       </div>
       <div class="image-container">
         <div class="image">
-          <input ref="imgInput" class="image-input" v-uni-id="'image'" type="file" accept="image/png"
+          <input ref="imgInput" class="hidden" v-uni-id="'image'" type="file" accept="image/png"
                  @change="imageChange">
           <img ref="img" class="image-preview" alt
                :src="value.image ? `${imageUrl}/${value.image}` : 'data://,'">
@@ -35,13 +35,11 @@
 </template>
 
 <script>
-import {createUniqIdsMixin} from 'vue-uniq-ids'
 import axios from 'axios'
 
 export default {
   name: 'Option',
   props: ['value'],
-  mixins: [createUniqIdsMixin()],
   data() {
     return {
       active: false,
@@ -57,49 +55,49 @@ export default {
   },
   computed: {
     contentHeight: function () {
-      return this.active ? `${this.$refs.content.scrollHeight}px` : '0';
+      return this.active ? `${this.$refs.content.scrollHeight}px` : '0'
     }
   },
   watch: {
     imageName: function (newName, oldName) {
       if (oldName) {
         axios
-            .delete(`admin/image/${oldName}`);
+            .delete(`admin/image/${oldName}`)
       }
       this.update('image', this.imageName)
       if (newName) {
-        this.value.image = newName;
+        this.value.image = newName
         this.hasImage = true
       } else {
-        this.value.image = null;
+        this.value.image = null
         this.hasImage = false
       }
     }
   },
   methods: {
     update: function (key, value) {
-      this.$emit('input', {...this.value, [key]: value});
+      this.$emit('input', {...this.value, [key]: value})
     },
     toggle: function () {
       if (this.active) {
-        this.collapse();
+        this.collapse()
       } else {
-        this.expand();
-        this.$emit('expand');
+        this.expand()
+        this.$emit('expand')
       }
     },
     expand: function () {
-      this.active = true;
+      this.active = true
     },
     collapse: function () {
-      this.active = false;
+      this.active = false
     },
     imageChange: function () {
-      const images = this.$refs.imgInput.files;
+      const images = this.$refs.imgInput.files
       if (images.length === 0) {
-        return;
+        return
       }
-      const formData = new FormData();
+      const formData = new FormData()
       formData.append('image', images[0])
       axios
           .post('admin/image', formData, {
@@ -174,10 +172,6 @@ export default {
   position: relative;
 }
 
-.image-input {
-  display: none;
-}
-
 .image-label {
   display: flex;
   height: 100%;
@@ -198,9 +192,5 @@ export default {
   max-width: 100%;
   margin: auto;
   position: absolute;
-}
-
-.transparent {
-  opacity: 0;
 }
 </style>

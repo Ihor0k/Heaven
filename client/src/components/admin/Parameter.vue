@@ -42,16 +42,14 @@
 </template>
 
 <script>
-import {isEqual, KeyGenerator} from '@/utils'
+import {isEqual, KeyGenerator} from '../../utils'
 import Vue from 'vue'
-import Option from '@/components/admin/Option'
-import {createUniqIdsMixin} from 'vue-uniq-ids'
+import Option from "./Option"
 import draggable from 'vuedraggable'
 
 export default {
   name: 'Parameter',
   props: ['value'],
-  mixins: [createUniqIdsMixin()],
   saved: null,
   keyGenerator: null,
   components: {
@@ -60,9 +58,9 @@ export default {
   },
   created() {
     if (this.value) {
-      this.$options.keyGenerator = new KeyGenerator();
-      this.value.options.forEach(option => Vue.set(option, 'key', this.$options.keyGenerator.next()));
-      this.$options.saved = JSON.parse(JSON.stringify(this.value));
+      this.$options.keyGenerator = new KeyGenerator()
+      this.value.options.forEach(option => Vue.set(option, 'key', this.$options.keyGenerator.next()))
+      this.$options.saved = JSON.parse(JSON.stringify(this.value))
     }
   },
   data() {
@@ -75,25 +73,25 @@ export default {
   mounted() {
     this.$refs.content.addEventListener('transitionend', () => {
       if (this.active) {
-        this.maxHeight = this.scrollHeight();
+        this.maxHeight = this.scrollHeight()
       } else {
-        this.$refs.content.classList.add('hidden');
+        this.$refs.content.classList.add('hidden')
       }
-    });
+    })
   },
   watch: {
     value: {
       handler: function (val) {
-        this.isSaved = isEqual(val, this.$options.saved);
+        this.isSaved = isEqual(val, this.$options.saved)
       },
       deep: true
     },
     active: function (active) {
       if (active) {
-        this.$refs.content.classList.remove('hidden');
-        this.maxHeight = this.scrollHeight();
+        this.$refs.content.classList.remove('hidden')
+        this.maxHeight = this.scrollHeight()
       } else {
-        this.maxHeight = '0';
+        this.maxHeight = '0'
       }
     }
   },
@@ -105,49 +103,49 @@ export default {
         description: '',
         price: '',
         image: ''
-      };
-      this.value.options.push(option);
+      }
+      this.value.options.push(option)
       Vue.nextTick(() => {
-        this.expandOption(this.value.options.length - 1);
-      });
+        this.expandOption(this.value.options.length - 1)
+      })
     },
     removeOption: function (index) {
-      this.value.options.splice(index, 1);
+      this.value.options.splice(index, 1)
     },
     update: function (key, value) {
-      this.$emit('input', {...this.value, [key]: value});
+      this.$emit('input', {...this.value, [key]: value})
     },
     scrollHeight: function () {
-      return `${this.$refs.content.scrollHeight + 1}px`;
+      return `${this.$refs.content.scrollHeight + 1}px`
     },
     expandOption: function (index) {
-      this.maxHeight = '100%';
-      const key = this.value.options[index].key;
+      this.maxHeight = '100%'
+      const key = this.value.options[index].key
       this.$refs.options.forEach((option) => {
         if (option.value.key === key) {
-          option.expand();
+          option.expand()
         } else {
-          option.collapse();
+          option.collapse()
         }
-      });
+      })
     },
     toggle: function () {
       if (this.active) {
-        this.collapse();
+        this.collapse()
       } else {
-        this.expand();
-        this.$emit('expand');
+        this.expand()
+        this.$emit('expand')
       }
     },
     expand: function () {
-      this.active = true;
+      this.active = true
     },
     collapse: function () {
-      this.active = false;
+      this.active = false
     },
     save: function () {
-      this.$options.saved = JSON.parse(JSON.stringify(this.value));
-      this.isSaved = true;
+      this.$options.saved = JSON.parse(JSON.stringify(this.value))
+      this.isSaved = true
       this.$emit('save')
     }
   }

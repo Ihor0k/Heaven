@@ -1,0 +1,457 @@
+<template>
+  <div class="app">
+    <div id="section1">
+      <div class="section1-left-wrapper">
+        <div class="section1-left">
+          <img class="logo" src="@/assets/logo.png" alt="logo">
+          <h1>Create your own Paradise</h1>
+          <p class="caption">We provide people with their dream place in Heaven</p>
+          <button class="text-button">Get started!</button>
+        </div>
+      </div>
+      <img class="section1-image" src="@/assets/illustration.png" alt="illustration">
+    </div>
+    <div id="section2">
+      <div class="section2-title">
+        <h2>How it works</h2>
+        <p class="caption">Have you ever thought about what is waiting for you THERE?</p>
+        <p class="caption">We give you a possibility to book a place in Heaven and manage your future.</p>
+      </div>
+      <div class="section2-cards">
+        <div class="section2-card" id="card_one">
+          <div class="circle disable-selection">
+            <span class="number">1</span>
+          </div>
+          <h3 class="card-title">Think</h3>
+          <p class="card-text">Close your eyes for a moment and think of a place where you would rest in peace and joy.
+            Where the security and confidence are your companions forever. Don’t hurry! Just relax.</p>
+        </div>
+        <img class="path" id="path_one" src="@/assets/path_1.png" alt="path_1">
+        <div class="section2-card" id="card-two">
+          <div class="circle disable-selection">
+            <span class="number">2</span>
+          </div>
+          <h3 class="card-title">Choose</h3>
+          <p class="card-text">Build your place in Heaven with our simple constructor. You can also add your own
+            personal wishes and everything will be done in the best way before your arrival!</p>
+        </div>
+        <img class="path" id="path_two" src="@/assets/path_2.png" alt="path_2">
+        <div class="section2-card" id="card_three">
+          <div class="circle disable-selection">
+            <span class="number">3</span>
+          </div>
+          <h3 class="card-title">Take!</h3>
+          <p class="card-text">You will receive a special e-mail with a picture of the place you have booked in
+            Paradise. We look forward to your arrival!</p>
+          <button class="text-button">Get started!</button>
+        </div>
+      </div>
+    </div>
+    <div id="section3">
+      <h3>Get on the board with us</h3>
+      <p>Be the first of the lucky ones to be in the best place in Heaven.</p>
+      <p>Create your dream place in three minutes with us!</p>
+      <button class="text-button">Make an order</button>
+    </div>
+    <div id="section4">
+      <div class="section4-title-wrapper">
+        <h2 class="section4-title">Why choose us</h2>
+      </div>
+      <ul class="section4-list">
+        <li class="section4-item">
+          <div class="section4-item-image-wrapper">
+            <img class="section4-item-image icon_privacy" src="@/assets/icon_privacy.png" alt="privacy"/>
+          </div>
+          <div class="section4-item-text-wrapper">
+            <h3 class="section4-item-text-header">Privacy</h3>
+            <p>We care about your personal data and we use most modern technologies to
+              protect them!</p>
+          </div>
+        </li>
+        <li class="section4-item">
+          <div class="section4-item-image-wrapper">
+            <img class="section4-item-image icon_reliability" src="@/assets/icon_reliability.png" alt="reliability"/>
+          </div>
+          <div class="section4-item-text-wrapper">
+            <h3 class="section4-item-text-header">Reliability</h3>
+            <p>We are the first company who started to provide people with such unique oportunity. With our many years
+              of experience and the use of the newest technologies and professionalism of the staff, we guarantee an
+              incredible experience and guaranteed quality services for all our customers regardless of religion and
+              overall wealth.</p>
+          </div>
+        </li>
+        <li class="section4-item">
+          <div class="section4-item-image-wrapper">
+            <img class="section4-item-image" src="@/assets/icon_simplicity.png" alt="simplicity"/>
+          </div>
+          <div class="section4-item-text-wrapper">
+            <h3 class="section4-item-text-header">Simplicity</h3>
+            <p>Easy and simple. Your dreams have never been so close!</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="section5">
+      <h2>What our clients say</h2>
+      <carousel class="section5-carousel" levels="2" scaling-factor="0.82" shift="0.64">
+        <carousel-card name="Bansilal Brata"
+                       :image="require('@/assets/client_1.jpg')"
+                       text="I am more than happy after making an order in the Heaven company! My wife and I are looking forward to leaving for our dream paradise!"/>
+        <carousel-card name="Ksenia Falk"
+                       :image="require('@/assets/client_2.jpg')"
+                       text="Great customer support from beginning to end of the process. The team is really interested in being as close as possible to your needs at every stage. I would recommend them unreservedly."/>
+        <carousel-card name="Fariba Mirzaii"
+                       :image="require('@/assets/client_3.jpg')"
+                       text="Fantastic organisation! Individual approach, quick reaction, exceeding your expectations. Special thanks to the managers for the wonderful job and professionalism!"/>
+        <carousel-card name="Alexander Christense"
+                       :image="require('@/assets/client_4.jpg')"
+                       text="My father told me to always care about my future and plan it. Thanks to Heaven Company team for their work and what they are doing for growing young generation. Think in advance and enjoy!"/>
+      </carousel>
+      <button class="text-button">Make an order</button>
+    </div>
+    <div id="section6">
+      <img class="section6-logo" src="@/assets/logo_line.png" alt="logo_line"/>
+      <p class="section6-copyright">Copyright © 2021 Heaven Company. All rights reserved.</p>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import Carousel from "./Carousel"
+import CarouselCard from "./CarouselCard"
+
+axios.defaults.baseURL = '/api'
+
+require('@/assets/styles/common.css')
+
+export default {
+  name: 'Main',
+  components: {
+    Carousel,
+    CarouselCard
+  }
+}
+
+</script>
+
+<style scoped>
+
+.app {
+  min-width: 100rem;
+}
+
+h1 {
+  font-family: Oswald, sans-serif;
+  font-weight: normal;
+  font-size: 3em;
+  letter-spacing: -0.5px;
+  color: #172127;
+}
+
+h2 {
+  font-family: Oswald, sans-serif;
+  font-weight: normal;
+  font-size: 2.5em;
+  letter-spacing: -0.5px;
+  color: #172127;
+}
+
+h3 {
+  font-family: Oswald, sans-serif;
+  font-weight: normal;
+  font-size: 1.75em;
+  color: #172127;
+}
+
+p {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1em;
+  color: #2d2d2d;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.caption {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+#section1 {
+  background-color: #f2fbff;
+  min-width: 1500px;
+  position: relative;
+}
+
+#section1 h1 {
+  margin-top: 4.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#section1 .caption {
+  margin-bottom: 2.5rem;
+}
+
+.section1-left-wrapper {
+  width: calc(100% - 960px);
+}
+
+.section1-left {
+  margin: auto;
+  width: 30em;
+  padding: 9rem 3rem;
+}
+
+.section1-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#section2 {
+  margin-top: 12rem;
+  margin-bottom: 8rem;
+}
+
+.section2-title {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.section2-title h2 {
+  padding-bottom: 1.5rem;
+}
+
+.section2-cards {
+  margin: auto;
+  position: relative;
+  width: 96rem;
+  height: 30rem;
+}
+
+.section2-card {
+  position: absolute;
+  width: 30rem;
+  height: 13rem;
+  border: solid 3px #d6dee5;
+  display: inline-block;
+  margin: 0 1rem;
+  vertical-align: top;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 1.5rem;
+  background-color: #0eb4ee;
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: top;
+}
+
+.number {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #fff;
+  line-height: 2.5rem;
+}
+
+.card-title {
+  margin-top: 1.5rem;
+  line-height: 2.5rem;
+  display: inline-block;
+}
+
+.card-text {
+  margin: 0 2rem 1rem 5.5rem;
+  line-height: 1.25;
+}
+
+.path {
+  position: absolute;
+  z-index: 1;
+}
+
+#card_one {
+  left: 0;
+  top: 0;
+}
+
+#path_one {
+  left: 27rem;
+  top: 12rem;
+}
+
+#card-two {
+  left: 32rem;
+  top: 7.5rem;
+}
+
+#path_two {
+  left: 61.5rem;
+  top: 8.5rem;
+}
+
+#card_three {
+  left: 64rem;
+  top: 15rem;
+  position: relative;
+}
+
+.section2-card button {
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  transform: translate(-50%, 50%);
+  left: 50%;
+  bottom: 0;
+}
+
+#section3 {
+  padding: 3.5rem 0;
+  background-color: #0eb4ee;
+  color: #fff;
+  text-align: center;
+}
+
+#section3 h3, #section3 p {
+  color: #fff;
+}
+
+#section3 h3 {
+  margin-bottom: 1rem;
+}
+
+#section3 button {
+  background-color: #dbf6ff;
+  color: #172127;
+  margin-top: 2rem;
+}
+
+#section3 button:hover {
+  background-color: #f6fdff;
+}
+
+#section3 button:active {
+  background-color: #88d6f3;
+}
+
+#section4 {
+  padding: 7.5rem 0;
+  white-space: nowrap;
+}
+
+.section4-title-wrapper {
+  width: calc(100% - 76rem);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.section4-title {
+  padding: 0 3rem;
+  width: 5.5em;
+  margin: auto;
+}
+
+.section4-list {
+  display: inline-block;
+}
+
+.section4-item {
+  white-space: nowrap;
+}
+
+.section4-item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.section4-item-image-wrapper {
+  vertical-align: middle;
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  background-color: #d3f2fe;
+  border-radius: 50%;
+  position: relative;
+}
+
+.section4-item-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.icon_privacy {
+  margin-bottom: 1.5rem;
+}
+
+.icon_reliability {
+  margin-bottom: 2rem;
+}
+
+.section4-item-text-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 3rem;
+  white-space: normal;
+  max-width: 42rem;
+}
+
+.section4-item-text-header {
+  margin-bottom: 1rem;
+}
+
+#section5 {
+  background-image: url("~@/assets/section5_bg.svg");
+  background-size: cover;
+  padding: 10rem 0 7.5rem 0;
+  text-align: center;
+}
+
+.section5-carousel {
+  width: 100%;
+  margin: 3rem auto 4rem;
+  display: inline-block;
+}
+
+#section6 {
+  width: 100%;
+  background-color: #f7fafd;
+  height: 7.5rem;
+  padding: 0 7.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+</style>
+
+<style>
+button {
+  background-color: #0eb4ee;
+}
+
+button:hover {
+  background-color: #34c6fa;
+}
+
+button:active {
+  background-color: #06a5dd;
+}
+
+.text-button {
+  padding: 1rem 4rem 1rem 4rem;
+  border-radius: 2rem;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+</style>
