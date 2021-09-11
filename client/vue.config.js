@@ -11,7 +11,7 @@ module.exports = {
         admin: {
             entry: 'src/admin.js',
             template: 'public/index.html',
-            filename: 'admin',
+            filename: 'admin.html',
             title: 'Admin panel',
             chunks: ['chunk-vendors', 'chunk-common', 'admin']
         }

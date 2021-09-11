@@ -325,17 +325,18 @@ p {
 }
 
 #section3 button {
-  background-color: #dbf6ff;
-  color: #172127;
+  border: solid 2px #fff;
+  background-color: #0eb4ee;
   margin-top: 2rem;
 }
 
 #section3 button:hover {
-  background-color: #f6fdff;
+  box-shadow: 0 0 0 1px #fff;
 }
 
 #section3 button:active {
-  background-color: #88d6f3;
+  background-color: #fff;
+  color: #172127;
 }
 
 #section4 {
