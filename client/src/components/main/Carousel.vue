@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="carousel">
     <button class="round-button" @click="rotateLeft">
       <img src="@/assets/arrow_left.svg" alt="arrow_left">
     </button>
@@ -133,7 +133,12 @@ export default {
 
 <style scoped>
 
+.carousel {
+  white-space: nowrap;
+}
+
 .carousel-wrapper {
+  white-space: initial;
   display: inline-block;
   vertical-align: middle;
 }
@@ -146,6 +151,8 @@ export default {
 }
 
 .round-button img {
+  width: 1.5rem;
+  height: 1.5rem;
   vertical-align: middle;
 }
 

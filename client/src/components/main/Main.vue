@@ -1,15 +1,13 @@
 <template>
   <div class="app">
     <div id="section1">
-      <div class="section1-left-wrapper">
-        <div class="section1-left">
-          <img class="logo" src="@/assets/logo.png" alt="logo">
-          <h1>Create your own Paradise</h1>
-          <p class="caption">We provide people with their dream place in Heaven</p>
-          <button class="text-button">Get started!</button>
-        </div>
+      <div class="section1-left">
+        <img class="logo" src="@/assets/logo.png" alt="logo">
+        <h1>Create your own Paradise</h1>
+        <p class="caption">We provide people with their dream place in Heaven</p>
+        <button class="text-button">Get started!</button>
       </div>
-      <img class="section1-image" src="@/assets/illustration.png" alt="illustration">
+      <img src="@/assets/illustration.png" alt="illustration">
     </div>
     <div id="section2">
       <div class="section2-title">
@@ -18,7 +16,7 @@
         <p class="caption">We give you a possibility to book a place in Heaven and manage your future.</p>
       </div>
       <div class="section2-cards">
-        <div class="section2-card" id="card_one">
+        <div class="section2-card" id="card-one">
           <div class="circle disable-selection">
             <span class="number">1</span>
           </div>
@@ -26,7 +24,7 @@
           <p class="card-text">Close your eyes for a moment and think of a place where you would rest in peace and joy.
             Where the security and confidence are your companions forever. Don’t hurry! Just relax.</p>
         </div>
-        <img class="path" id="path_one" src="@/assets/path_1.png" alt="path_1">
+        <img class="path" id="path-one" src="@/assets/path_1.png" alt="path_1">
         <div class="section2-card" id="card-two">
           <div class="circle disable-selection">
             <span class="number">2</span>
@@ -35,8 +33,8 @@
           <p class="card-text">Build your place in Heaven with our simple constructor. You can also add your own
             personal wishes and everything will be done in the best way before your arrival!</p>
         </div>
-        <img class="path" id="path_two" src="@/assets/path_2.png" alt="path_2">
-        <div class="section2-card" id="card_three">
+        <img class="path" id="path-two" src="@/assets/path_2.png" alt="path_2">
+        <div class="section2-card" id="card-three">
           <div class="circle disable-selection">
             <span class="number">3</span>
           </div>
@@ -54,9 +52,7 @@
       <button class="text-button">Make an order</button>
     </div>
     <div id="section4">
-      <div class="section4-title-wrapper">
-        <h2 class="section4-title">Why choose us</h2>
-      </div>
+      <h2 class="section4-title">Why choose us</h2>
       <ul class="section4-list">
         <li class="section4-item">
           <div class="section4-item-image-wrapper">
@@ -110,7 +106,7 @@
       <button class="text-button">Make an order</button>
     </div>
     <div id="section6">
-      <img class="section6-logo" src="@/assets/logo_line.png" alt="logo_line"/>
+      <img class="logo-line" src="@/assets/logo_line.png" alt="logo_line"/>
       <p class="section6-copyright">Copyright © 2021 Heaven Company. All rights reserved.</p>
     </div>
   </div>
@@ -136,10 +132,6 @@ export default {
 </script>
 
 <style scoped>
-
-.app {
-  min-width: 100rem;
-}
 
 h1 {
   font-family: Oswald, sans-serif;
@@ -179,8 +171,9 @@ p {
 
 #section1 {
   background-color: #f2fbff;
-  min-width: 1500px;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #section1 h1 {
@@ -192,25 +185,30 @@ p {
   margin-bottom: 2.5rem;
 }
 
-.section1-left-wrapper {
-  width: calc(100% - 960px);
+#section1 img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
 
 .section1-left {
+  flex-shrink: 0;
   margin: auto;
-  width: 30em;
   padding: 9rem 3rem;
 }
 
-.section1-image {
-  position: absolute;
-  top: 0;
-  right: 0;
+.logo {
+  width: 167px;
+  height: 98px;
+}
+
+.logo-line {
+  width: 162px;
+  height: 36px;
 }
 
 #section2 {
-  margin-top: 12rem;
-  margin-bottom: 8rem;
+  margin: 8rem auto;
 }
 
 .section2-title {
@@ -225,8 +223,6 @@ p {
 .section2-cards {
   margin: auto;
   position: relative;
-  width: 96rem;
-  height: 30rem;
 }
 
 .section2-card {
@@ -234,8 +230,9 @@ p {
   width: 30rem;
   height: 13rem;
   border: solid 3px #d6dee5;
+  border-radius: 1rem;
+  box-sizing: border-box;
   display: inline-block;
-  margin: 0 1rem;
   vertical-align: top;
 }
 
@@ -274,30 +271,105 @@ p {
   z-index: 1;
 }
 
-#card_one {
-  left: 0;
-  top: 0;
+@media (min-width: 100rem) {
+  .section2-cards {
+    width: 94rem;
+    height: 30rem;
+  }
+
+  #card-one {
+    left: 0;
+    top: 0;
+  }
+
+  #path-one {
+    left: 27rem;
+    top: 12rem;
+  }
+
+  #card-two {
+    left: 32rem;
+    top: 7.5rem;
+  }
+
+  #path-two {
+    left: 61.5rem;
+    top: 8.5rem;
+  }
+
+  #card-three {
+    left: 64rem;
+    top: 15rem;
+  }
 }
 
-#path_one {
-  left: 27rem;
-  top: 12rem;
+@media (min-width: 80rem) and (max-width: 99.99rem) {
+  .section2-cards {
+    width: 74rem;
+    height: 45rem;
+  }
+
+  #card-one {
+    left: 0;
+    top: 0;
+  }
+
+  #path-one {
+    transform: rotate(40deg);
+    left: 14rem;
+    top: 14rem;
+  }
+
+  #card-two {
+    left: 20rem;
+    top: 15rem;
+  }
+
+  #path-two {
+    left: 49rem;
+    top: 23rem;
+  }
+
+  #card-three {
+    left: 44rem;
+    top: 30rem;
+  }
 }
 
-#card-two {
-  left: 32rem;
-  top: 7.5rem;
-}
 
-#path_two {
-  left: 61.5rem;
-  top: 8.5rem;
-}
+@media (max-width: 79.99rem) {
+  .section2-cards {
+    width: 30rem;
+    height: 45rem;
+  }
 
-#card_three {
-  left: 64rem;
-  top: 15rem;
-  position: relative;
+  .section2-card {
+    left: 0;
+  }
+
+  #card-one {
+    top: 0;
+  }
+
+  #path-one {
+    transform: rotate(90deg) scale(0.7);
+    left: -1rem;
+    top: 11rem;
+  }
+
+  #card-two {
+    top: 15rem;
+  }
+
+  #path-two {
+    transform: rotate(45deg) scale(0.7);
+    left: 19rem;
+    top: 25rem;
+  }
+
+  #card-three {
+    top: 30rem;
+  }
 }
 
 .section2-card button {
@@ -341,16 +413,12 @@ p {
 
 #section4 {
   padding: 7.5rem 0;
-  white-space: nowrap;
-}
-
-.section4-title-wrapper {
-  width: calc(100% - 76rem);
-  display: inline-block;
-  vertical-align: top;
+  text-align: center;
 }
 
 .section4-title {
+  display: inline-block;
+  vertical-align: top;
   padding: 0 3rem;
   width: 5.5em;
   margin: auto;
@@ -358,14 +426,21 @@ p {
 
 .section4-list {
   display: inline-block;
+  text-align: initial;
+  margin-left: 22rem;
 }
 
 .section4-item {
   white-space: nowrap;
 }
 
+.section4-item:not(:first-child) {
+  border-top: 3px solid #f3f5f7;
+  padding-top: 2rem;
+}
+
 .section4-item:not(:last-child) {
-  margin-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .section4-item-image-wrapper {
