@@ -5,9 +5,11 @@
         <img class="logo" src="@/assets/logo.png" alt="logo">
         <h1>Create your own Paradise</h1>
         <p class="caption">We provide people with their dream place in Heaven</p>
-        <button class="text-button">Get started!</button>
+        <a href="constructor" class="button text-button">Get started!</a>
       </div>
-      <img src="@/assets/illustration.png" alt="illustration">
+      <div class="section1-right">
+        <img class="section1-right-image" src="@/assets/illustration.png" alt="illustration">
+      </div>
     </div>
     <div id="section2">
       <div class="section2-title">
@@ -41,7 +43,7 @@
           <h3 class="card-title">Take!</h3>
           <p class="card-text">You will receive a special e-mail with a picture of the place you have booked in
             Paradise. We look forward to your arrival!</p>
-          <button class="text-button">Get started!</button>
+          <a href="constructor" class="section2-button button text-button">Get started!</a>
         </div>
       </div>
     </div>
@@ -49,11 +51,11 @@
       <h3>Get on the board with us</h3>
       <p>Be the first of the lucky ones to be in the best place in Heaven.</p>
       <p>Create your dream place in three minutes with us!</p>
-      <button class="text-button">Make an order</button>
+      <a href="constructor" class="button text-button section3-button">Make an order</a>
     </div>
     <div id="section4">
-      <h2 class="section4-title">Why choose us</h2>
-      <ul class="section4-list">
+      <h2>Why choose us</h2>
+      <ul>
         <li class="section4-item">
           <div class="section4-item-image-wrapper">
             <img class="section4-item-image icon_privacy" src="@/assets/icon_privacy.png" alt="privacy"/>
@@ -89,33 +91,31 @@
     </div>
     <div id="section5">
       <h2>What our clients say</h2>
-      <carousel class="section5-carousel" levels="2" scaling-factor="0.82" shift="0.64">
-        <carousel-card name="Bansilal Brata"
-                       :image="require('@/assets/client_1.jpg')"
-                       text="I am more than happy after making an order in the Heaven company! My wife and I are looking forward to leaving for our dream paradise!"/>
-        <carousel-card name="Ksenia Falk"
-                       :image="require('@/assets/client_2.jpg')"
-                       text="Great customer support from beginning to end of the process. The team is really interested in being as close as possible to your needs at every stage. I would recommend them unreservedly."/>
-        <carousel-card name="Fariba Mirzaii"
-                       :image="require('@/assets/client_3.jpg')"
-                       text="Fantastic organisation! Individual approach, quick reaction, exceeding your expectations. Special thanks to the managers for the wonderful job and professionalism!"/>
-        <carousel-card name="Alexander Christense"
-                       :image="require('@/assets/client_4.jpg')"
-                       text="My father told me to always care about my future and plan it. Thanks to Heaven Company team for their work and what they are doing for growing young generation. Think in advance and enjoy!"/>
-      </carousel>
-      <button class="text-button">Make an order</button>
+      <Carousel class="section5-carousel" levels="2" scaling-factor="0.82" shift="0.64">
+        <CarouselCard name="Bansilal Brata"
+                      :image="require('@/assets/client_1.jpg')"
+                      text="I am more than happy after making an order in the Heaven company! My wife and I are looking forward to leaving for our dream paradise!"/>
+        <CarouselCard name="Ksenia Falk"
+                      :image="require('@/assets/client_2.jpg')"
+                      text="Great customer support from beginning to end of the process. The team is really interested in being as close as possible to your needs at every stage. I would recommend them unreservedly."/>
+        <CarouselCard name="Fariba Mirzaii"
+                      :image="require('@/assets/client_3.jpg')"
+                      text="Fantastic organisation! Individual approach, quick reaction, exceeding your expectations. Special thanks to the managers for the wonderful job and professionalism!"/>
+        <CarouselCard name="Alexander Christense"
+                      :image="require('@/assets/client_4.jpg')"
+                      text="My father told me to always care about my future and plan it. Thanks to Heaven Company team for their work and what they are doing for growing young generation. Think in advance and enjoy!"/>
+      </Carousel>
+      <a href="constructor" class="button text-button">Make an order</a>
     </div>
-    <div id="section6">
-      <img class="logo-line" src="@/assets/logo_line.png" alt="logo_line"/>
-      <p class="section6-copyright">Copyright © 2021 Heaven Company. All rights reserved.</p>
-    </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Carousel from "./Carousel"
-import CarouselCard from "./CarouselCard"
+import Carousel from './Carousel'
+import CarouselCard from './CarouselCard'
+import Footer from './Footer'
 
 axios.defaults.baseURL = '/api'
 
@@ -125,7 +125,8 @@ export default {
   name: 'Main',
   components: {
     Carousel,
-    CarouselCard
+    CarouselCard,
+    Footer
   }
 }
 
@@ -139,6 +140,7 @@ h1 {
   font-size: 3em;
   letter-spacing: -0.5px;
   color: #172127;
+  white-space: nowrap;
 }
 
 h2 {
@@ -147,6 +149,7 @@ h2 {
   font-size: 2.5em;
   letter-spacing: -0.5px;
   color: #172127;
+  white-space: nowrap;
 }
 
 h3 {
@@ -154,6 +157,7 @@ h3 {
   font-weight: normal;
   font-size: 1.75em;
   color: #172127;
+  white-space: nowrap;
 }
 
 p {
@@ -174,6 +178,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  min-width: 80rem;
 }
 
 #section1 h1 {
@@ -185,26 +190,14 @@ p {
   margin-bottom: 2.5rem;
 }
 
-#section1 img {
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
-}
-
 .section1-left {
   flex-shrink: 0;
   margin: auto;
   padding: 9rem 3rem;
 }
 
-.logo {
-  width: 167px;
-  height: 98px;
-}
-
-.logo-line {
-  width: 162px;
-  height: 36px;
+.section1-right-image {
+  max-width: 100%;
 }
 
 #section2 {
@@ -372,7 +365,7 @@ p {
   }
 }
 
-.section2-card button {
+.section2-button {
   position: absolute;
   display: block;
   white-space: nowrap;
@@ -396,38 +389,26 @@ p {
   margin-bottom: 1rem;
 }
 
-#section3 button {
+.section3-button {
   border: solid 2px #fff;
   background-color: #0eb4ee;
   margin-top: 2rem;
 }
 
-#section3 button:hover {
+.section3-button:hover {
   box-shadow: 0 0 0 1px #fff;
 }
 
-#section3 button:active {
+.section3-button:active {
   background-color: #fff;
   color: #172127;
 }
 
 #section4 {
-  padding: 7.5rem 0;
-  text-align: center;
-}
-
-.section4-title {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0 3rem;
-  width: 5.5em;
-  margin: auto;
-}
-
-.section4-list {
-  display: inline-block;
-  text-align: initial;
-  margin-left: 22rem;
+  padding: 7.5rem 3rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: space-evenly;
 }
 
 .section4-item {
@@ -509,15 +490,15 @@ p {
 </style>
 
 <style>
-button {
+.button {
   background-color: #0eb4ee;
 }
 
-button:hover {
+.button:hover {
   background-color: #34c6fa;
 }
 
-button:active {
+.button:active {
   background-color: #06a5dd;
 }
 

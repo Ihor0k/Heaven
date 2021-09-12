@@ -1,6 +1,6 @@
 <template>
   <div class="carousel">
-    <button class="round-button" @click="rotateLeft">
+    <button class="button round-button" @click="rotateLeft">
       <img src="@/assets/arrow_left.svg" alt="arrow_left">
     </button>
     <div class="carousel-wrapper">
@@ -14,14 +14,14 @@
         />
       </ul>
     </div>
-    <button class="round-button" @click="rotateRight">
+    <button class="button round-button" @click="rotateRight">
       <img src="@/assets/arrow_right.svg" alt="arrow_right">
     </button>
   </div>
 </template>
 
 <script>
-import {KeyGenerator} from "../../utils"
+import {KeyGenerator} from '../../utils'
 
 const CarouselNode = {
   props: ['card', 'scalingFactor', 'shift', 'levels', 'onClick'],
