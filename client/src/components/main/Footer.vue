@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <div class="footer">
     <img class="logo-line" src="@/assets/logo_line.png" alt="logo_line"/>
     <p class="section6-copyright">Copyright © 2021 Heaven Company. All rights reserved.</p>
@@ -15,6 +15,7 @@ export default {
   .footer {
     background-color: #f7fafd;
     height: 7.5rem;
+    min-height: 7.5rem;
     padding: 0 7.5rem;
     box-sizing: border-box;
     display: flex;

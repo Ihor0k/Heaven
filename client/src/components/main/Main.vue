@@ -5,7 +5,7 @@
         <img class="logo" src="@/assets/logo.png" alt="logo">
         <h1>Create your own Paradise</h1>
         <p class="caption">We provide people with their dream place in Heaven</p>
-        <a href="constructor" class="button text-button">Get started!</a>
+        <router-link to="/constructor" class="button text-button">Get started!</router-link>
       </div>
       <div class="section1-right">
         <img class="section1-right-image" src="@/assets/illustration.png" alt="illustration">
@@ -43,7 +43,7 @@
           <h3 class="card-title">Take!</h3>
           <p class="card-text">You will receive a special e-mail with a picture of the place you have booked in
             Paradise. We look forward to your arrival!</p>
-          <a href="constructor" class="section2-button button text-button">Get started!</a>
+          <router-link to="/constructor" class="section2-button button text-button">Get started!</router-link>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
       <h3>Get on the board with us</h3>
       <p>Be the first of the lucky ones to be in the best place in Heaven.</p>
       <p>Create your dream place in three minutes with us!</p>
-      <a href="constructor" class="button text-button section3-button">Make an order</a>
+      <router-link to="/constructor" class="button text-button section3-button">Make an order</router-link>
     </div>
     <div id="section4">
       <h2>Why choose us</h2>
@@ -105,7 +105,7 @@
                       :image="require('@/assets/client_4.jpg')"
                       text="My father told me to always care about my future and plan it. Thanks to Heaven Company team for their work and what they are doing for growing young generation. Think in advance and enjoy!"/>
       </Carousel>
-      <a href="constructor" class="button text-button">Make an order</a>
+      <router-link to="/constructor" class="button text-button">Make an order</router-link>
     </div>
     <Footer/>
   </div>
@@ -474,17 +474,6 @@ p {
   width: 100%;
   margin: 3rem auto 4rem;
   display: inline-block;
-}
-
-#section6 {
-  width: 100%;
-  background-color: #f7fafd;
-  height: 7.5rem;
-  padding: 0 7.5rem;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 </style>

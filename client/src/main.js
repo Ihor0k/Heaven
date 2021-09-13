@@ -1,9 +1,17 @@
 import Vue from 'vue'
-import Main from "./components/main/Main"
 import {createUniqIdsMixin} from 'vue-uniq-ids'
+import VueRouter from 'vue-router'
+import {routes} from './routes'
 
 Vue.mixin(createUniqIdsMixin())
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: routes
+})
 
 new Vue({
-    render: h => h(Main),
+    router
 }).$mount('#app')
